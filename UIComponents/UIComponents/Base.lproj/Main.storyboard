@@ -343,7 +343,7 @@
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="4ga-rn-VLR"/>
                                     <barButtonItem title="Current Location" style="plain" id="z9u-GQ-IV1">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="ffX-8M-m1I">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="ffX-8M-m1I">
                                             <rect key="frame" x="107.5" y="10" width="50" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Button"/>
@@ -355,7 +355,7 @@
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Z5F-Q3-USy"/>
                                     <barButtonItem title="Draw Route" style="plain" id="gMD-3B-1J1">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="OVB-6K-5e7">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="OVB-6K-5e7">
                                             <rect key="frame" x="199.5" y="10" width="107.5" height="34.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Button"/>
@@ -769,6 +769,26 @@
                                             <segue destination="fIc-ZB-PBY" kind="show" id="jAN-hg-shG"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="4JC-bP-xcn" style="IBUITableViewCellStyleDefault" id="Fzd-H7-9UL">
+                                        <rect key="frame" x="0.0" y="392.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fzd-H7-9UL" id="BgS-cC-Mq1">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Slider" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4JC-bP-xcn">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="29P-kX-yyZ" kind="show" id="ykJ-1P-wIF"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -782,6 +802,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wc9-i2-1ps" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1955.072463768116" y="220.98214285714286"/>
+        </scene>
+        <!--Slider View Controller-->
+        <scene sceneID="Ef6-gb-DO9">
+            <objects>
+                <viewController id="29P-kX-yyZ" customClass="SliderViewController" customModule="UIComponents" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="biK-TA-xSK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0lo-a2-8su">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="6hH-2Z-z7g">
+                                <rect key="frame" x="149" y="816" width="116" height="26"/>
+                            </pageControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="VEt-oF-Bkr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="0lo-a2-8su" firstAttribute="leading" secondItem="VEt-oF-Bkr" secondAttribute="leading" id="bch-ls-6xW"/>
+                            <constraint firstItem="VEt-oF-Bkr" firstAttribute="bottom" secondItem="6hH-2Z-z7g" secondAttribute="bottom" constant="20" id="cDL-MI-klb"/>
+                            <constraint firstItem="VEt-oF-Bkr" firstAttribute="trailing" secondItem="0lo-a2-8su" secondAttribute="trailing" id="eva-A9-diO"/>
+                            <constraint firstItem="0lo-a2-8su" firstAttribute="top" secondItem="VEt-oF-Bkr" secondAttribute="top" id="v2M-Fr-rwx"/>
+                            <constraint firstItem="6hH-2Z-z7g" firstAttribute="centerX" secondItem="VEt-oF-Bkr" secondAttribute="centerX" id="xIy-6r-8or"/>
+                            <constraint firstItem="VEt-oF-Bkr" firstAttribute="bottom" secondItem="0lo-a2-8su" secondAttribute="bottom" id="yMw-Wt-ldi"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="pwh-aF-CJ4"/>
+                    <connections>
+                        <outlet property="pageController" destination="6hH-2Z-z7g" id="2pP-WQ-m7G"/>
+                        <outlet property="scrollView" destination="0lo-a2-8su" id="HP5-vV-oiS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8sv-sM-f4c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1044.9275362318842" y="-481.47321428571428"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="kKb-qi-l92">
