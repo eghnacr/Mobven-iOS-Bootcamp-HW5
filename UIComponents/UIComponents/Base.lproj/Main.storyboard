@@ -333,34 +333,57 @@
                                     <outlet property="delegate" destination="m2C-yw-bgz" id="rBe-2a-h6x"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffX-8M-m1I">
-                                <rect key="frame" x="16" y="819" width="45" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="location" catalog="system"/>
-                                <connections>
-                                    <action selector="showCurrentLocationTapped:" destination="m2C-yw-bgz" eventType="touchUpInside" id="Hq1-LS-Qtn"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVB-6K-5e7">
-                                <rect key="frame" x="303" y="819" width="95" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Draw route"/>
-                                <connections>
-                                    <action selector="drawRouteButtonTapped:" destination="m2C-yw-bgz" eventType="touchUpInside" id="dxT-ra-PEs"/>
-                                </connections>
-                            </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jDa-aU-1jH">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <items>
+                                    <barButtonItem title="Back" image="chevron.backward" catalog="system" id="vb6-Ye-xiW">
+                                        <connections>
+                                            <action selector="didBackButtonTapped:" destination="m2C-yw-bgz" id="ah0-Ef-KSE"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="4ga-rn-VLR"/>
+                                    <barButtonItem title="Current Location" style="plain" id="z9u-GQ-IV1">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="ffX-8M-m1I">
+                                            <rect key="frame" x="107.5" y="10" width="50" height="34"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="location" catalog="system"/>
+                                            <connections>
+                                                <action selector="showCurrentLocationTapped:" destination="m2C-yw-bgz" eventType="touchUpInside" id="Hq1-LS-Qtn"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Z5F-Q3-USy"/>
+                                    <barButtonItem title="Draw Route" style="plain" id="gMD-3B-1J1">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="OVB-6K-5e7">
+                                            <rect key="frame" x="199.5" y="10" width="107.5" height="34.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="Draw route"/>
+                                            <connections>
+                                                <action selector="drawRouteButtonTapped:" destination="m2C-yw-bgz" eventType="touchUpInside" id="dxT-ra-PEs"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="dNa-T7-czb"/>
+                                    <barButtonItem title="Next" image="chevron.forward" catalog="system" id="nfm-kO-XJI">
+                                        <connections>
+                                            <action selector="didNextButtonTapped:" destination="m2C-yw-bgz" id="HqQ-d8-4GU"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cKL-Sn-6Te"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="cKL-Sn-6Te" firstAttribute="bottom" secondItem="OVB-6K-5e7" secondAttribute="bottom" constant="12" id="4Zc-PA-YdP"/>
+                            <constraint firstItem="jDa-aU-1jH" firstAttribute="leading" secondItem="cKL-Sn-6Te" secondAttribute="leading" id="2Nb-w4-aVw"/>
                             <constraint firstItem="gwP-Ey-78A" firstAttribute="top" secondItem="cKL-Sn-6Te" secondAttribute="top" id="S1H-HN-TNN"/>
                             <constraint firstItem="cKL-Sn-6Te" firstAttribute="bottom" secondItem="gwP-Ey-78A" secondAttribute="bottom" id="X4e-wV-bea"/>
+                            <constraint firstItem="cKL-Sn-6Te" firstAttribute="bottom" secondItem="jDa-aU-1jH" secondAttribute="bottom" id="bCl-qh-Pv2"/>
                             <constraint firstItem="cKL-Sn-6Te" firstAttribute="trailing" secondItem="gwP-Ey-78A" secondAttribute="trailing" id="dOP-hM-XIz"/>
-                            <constraint firstItem="cKL-Sn-6Te" firstAttribute="trailing" secondItem="OVB-6K-5e7" secondAttribute="trailing" constant="16" id="lDs-Pt-ZMr"/>
                             <constraint firstItem="gwP-Ey-78A" firstAttribute="leading" secondItem="cKL-Sn-6Te" secondAttribute="leading" id="nta-0z-NAT"/>
-                            <constraint firstItem="ffX-8M-m1I" firstAttribute="leading" secondItem="cKL-Sn-6Te" secondAttribute="leading" constant="16" id="y8J-QK-62p"/>
-                            <constraint firstItem="cKL-Sn-6Te" firstAttribute="bottom" secondItem="ffX-8M-m1I" secondAttribute="bottom" constant="12" id="zVa-0s-bRv"/>
+                            <constraint firstItem="jDa-aU-1jH" firstAttribute="trailing" secondItem="cKL-Sn-6Te" secondAttribute="trailing" id="rJd-bZ-k8C"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="AAX-mw-rl1"/>
@@ -846,6 +869,8 @@
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="bgImage" width="640" height="360"/>
+        <image name="chevron.backward" catalog="system" width="96" height="128"/>
+        <image name="chevron.forward" catalog="system" width="96" height="128"/>
         <image name="location" catalog="system" width="128" height="118"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

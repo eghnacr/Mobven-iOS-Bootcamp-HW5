@@ -58,6 +58,11 @@ class MapViewController: UIViewController {
         locationManager.requestLocation()
     }
 
+    
+    var polylines : [MKPolyline] = []
+    var selectedPath = 0
+    var currentDrawing = 0
+    
     @IBAction func drawRouteButtonTapped(_ sender: UIButton) {
         guard let currentCoordinate = currentCoordinate,
               let destinationCoordinate = destinationCoordinate else {
@@ -88,17 +93,70 @@ class MapViewController: UIViewController {
                 return
             }
 
-            guard let polyline: MKPolyline = response?.routes.first?.polyline else { return }
-            self.mapView.addOverlay(polyline, level: .aboveLabels)
-
-            let rect = polyline.boundingMapRect
-            let region = MKCoordinateRegion(rect)
-            self.mapView.setRegion(region, animated: true)
+//            guard let polyline: MKPolyline = response?.routes.first?.polyline else { return }
+//            self.mapView.addOverlay(polyline, level: .aboveLabels)
+//
+//            let rect = polyline.boundingMapRect
+//            let region = MKCoordinateRegion(rect)
+//            self.mapView.setRegion(region, animated: true)
+            
 
             //Odev 1 navigate buttonlari ile diger route'lar gosterilmelidir.
+            self.removeOverlays()
+            self.polylines.removeAll()
+            if let routes = response?.routes {
+                routes.forEach { route in
+                    let polyline = route.polyline
+                    self.polylines.append(polyline)
+                }
+                if let first = routes.first?.polyline {
+                    let rect = first.boundingMapRect
+                    let region = MKCoordinateRegion(rect)
+                    self.mapView.setRegion(region, animated: true)
+                }
+                self.drawOverlays()
+            }
         }
     }
-
+    
+    func removeOverlays() {
+        currentDrawing = 0
+        self.mapView.removeOverlays(polylines)
+    }
+    
+    func drawOverlays() {
+        if polylines.isEmpty {
+            return
+        }
+        
+        for polyline in polylines {
+            self.mapView.addOverlay(polyline, level: .aboveLabels)
+            currentDrawing += 1
+        }
+    }
+    
+    @IBAction func didNextButtonTapped(_ sender: UIBarButtonItem) {
+        if polylines.isEmpty {
+            return
+        }
+        selectedPath += 1
+        selectedPath %= polylines.count
+        removeOverlays()
+        drawOverlays()
+    }
+    
+    @IBAction func didBackButtonTapped(_ sender: Any) {
+        if polylines.isEmpty {
+            return
+        }
+        selectedPath -= 1
+        if selectedPath < 0 {
+            selectedPath += polylines.count
+        }
+        removeOverlays()
+        drawOverlays()
+    }
+    
     private lazy var locationManager: CLLocationManager = {
         let locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -129,7 +187,13 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
         renderer.strokeColor = .magenta
-        renderer.lineWidth = 8
+        if currentDrawing == selectedPath {
+            renderer.lineWidth = 9
+            renderer.alpha = 1
+        } else {
+            renderer.lineWidth = 6
+            renderer.alpha = 0.3
+        }
         return renderer
     }
 }
